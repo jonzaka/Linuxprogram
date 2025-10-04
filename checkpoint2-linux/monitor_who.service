@@ -1,0 +1,18 @@
+[Unit]
+Description=Monitor de usuários logados (who)
+After=network.target
+
+[Service]
+Type=simple
+Environment=INTERVAL=10
+ExecStart=/usr/local/bin/monitor_who.sh start
+ExecStop=/usr/local/bin/monitor_who.sh stop
+ExecReload=/usr/local/bin/monitor_who.sh reload
+PIDFile=/run/monitor_who.pid
+Restart=always
+RestartSec=2
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target
