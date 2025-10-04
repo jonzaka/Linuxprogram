@@ -1,0 +1,17 @@
+[Unit]
+Description=Monitor de atividades de login (auth.log)
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=/usr/local/bin/monitor_auth.sh start
+ExecStop=/usr/local/bin/monitor_auth.sh stop
+ExecReload=/usr/local/bin/monitor_auth.sh reload
+PIDFile=/run/monitor_auth.pid
+Restart=always
+RestartSec=2
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target
